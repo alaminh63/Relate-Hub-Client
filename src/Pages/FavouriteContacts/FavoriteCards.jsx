@@ -1,40 +1,28 @@
-import { useEffect } from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
 import { useState } from "react";
-import { Menu } from "@headlessui/react";
-const ContactCard = ({ contacts, handleModal }) => {
+
+const FavoriteCards = ({ item }) => {
+  const [contacts, setContacts] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/contacts/${item}`
+        );
+        setContacts(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    if (item) {
+      fetchData();
+    }
+  }, [item]);
+
   const { name, email, photoURL, phone, address, _id } = contacts || {};
 
-  const options = {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: "{}",
-  };
-  const handleDelete = (_id) => {
-    fetch(`http://localhost:3000/deleteContact/${_id}`, options)
-      .then((response) => response.json())
-      .then((response) => console.log(response))
-      .catch((err) => console.error(err));
-  };
-
-  const [isFavorite, setIsFavorite] = useState(false);
-  useEffect(() => {
-    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    setIsFavorite(favorites.includes(_id));
-  }, [_id]);
-  const toggleFavorite = () => {
-    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-
-    if (isFavorite) {
-      favorites = favorites.filter((favId) => favId !== _id);
-    } else {
-      favorites.push(_id);
-    }
-
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-    setIsFavorite(!isFavorite);
-  };
   return (
     <div className="border  p-2 rounded-xl shadow-lg  ">
       <div className="overflow-hidden relative  bg-gray-50 rounded-2xl text-sky-600 flex flex-col justify-end items-center gap-2">
@@ -83,7 +71,7 @@ const ContactCard = ({ contacts, handleModal }) => {
         </div>
         {/* <span className="font-extrabold text-7xl -skew-x-12 -skew-y-12 -mt-1 mb-5">70%</span> */}
 
-        <div className="absolute md:top-3 top-2 right-3 z-10  ">
+        {/* <div className="absolute md:top-3 top-2 right-3 z-10  ">
           <ul className="menu py-0 px-0  rounded-lg bg-sky-400 text-white text-base">
             <li>
               <details close>
@@ -98,18 +86,10 @@ const ContactCard = ({ contacts, handleModal }) => {
               </details>
             </li>
           </ul>
-        </div>
-        <button
-            onClick={toggleFavorite}
-            className={`${
-              isFavorite ? "bg-yellow-400" : "bg-gray-300"
-            } rounded-full p-2`}
-          >
-            {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
-          </button>
+        </div> */}
       </div>
     </div>
   );
 };
 
-export default ContactCard;
+export default FavoriteCards;

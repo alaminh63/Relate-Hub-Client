@@ -30,6 +30,16 @@ const NavigationBar = () => {
           >
             <p>Add Contact</p>
           </NavLink>
+          <NavLink
+            to="/favoriteContacts"
+            className={({ isActive }) =>
+              isActive
+                ? "p-2 rounded bg-primary text-white cursor-pointer"
+                : "p-2 rounded group hover:bg-primary hover:text-white cursor-pointer transition-all"
+            }
+          >
+            <p>Favorite Contacts</p>
+          </NavLink>
         </div>
         <NavLink
           to="/login"

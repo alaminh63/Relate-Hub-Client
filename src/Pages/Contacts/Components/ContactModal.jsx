@@ -16,7 +16,6 @@ const ContactModal = ({ isOpen, setIsOpen, contactId }) => {
     const address = form.address.value;
     const photoURL = form.photoURL.value;
     const userInfo = { name, email, phone, address, photoURL };
-    console.log(userInfo);
     const options = {
       method: "PUT",
       headers: {
@@ -42,12 +41,13 @@ const ContactModal = ({ isOpen, setIsOpen, contactId }) => {
         console.error("Error fetching data:", error);
       }
     };
-
     if (contactId) {
       fetchData();
     }
   }, [contactId]);
 
+
+  
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
       <div
@@ -84,7 +84,7 @@ const ContactModal = ({ isOpen, setIsOpen, contactId }) => {
                 id="email"
                 international
                 defaultCountry="BD"
-                defaultValue={phone}
+             defaultValue={value}
                 onChange={setValue}
               />
 
