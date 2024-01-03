@@ -90,8 +90,8 @@ const FavoriteCards = ({ item }) => {
         <button
           onClick={toggleFavorite}
           className={`${
-            isFavorite ? "bg-yellow-400" : "bg-gray-300"
-          } rounded-full p-2`}
+            isFavorite ? "bg-red-600" : "bg-sky-600"
+          } text-white rounded-full p-3 font-semibold`}
         >
           {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
         </button>
