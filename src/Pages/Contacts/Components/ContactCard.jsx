@@ -1,5 +1,22 @@
-const ContactCard = ({ contacts }) => {
-  const { name, email, photoURL, phone, address } = contacts || {};
+import { useEffect } from "react";
+import { useState } from "react";
+import { Menu } from "@headlessui/react";
+const ContactCard = ({ contacts, handleModal }) => {
+  const { name, email, photoURL, phone, address, _id } = contacts || {};
+  const options = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: "{}",
+  };
+
+  const handleDelete = (_id) => {
+    fetch(`http://localhost:3000/deleteContact/${_id}`, options)
+      .then((response) => response.json())
+      .then((response) => console.log(response))
+      .catch((err) => console.error(err));
+  };
 
   return (
     <div className="border  p-2 rounded-xl shadow-lg  ">
@@ -23,9 +40,13 @@ const ContactCard = ({ contacts }) => {
             strokeWidth="8"
           ></path>
         </svg>
-        <div className="flex items-center border-2 w-full justify-evenly ">
+        <div className="flex gap-1 items-center border-2 w-full justify-evenly ">
           <div>
-            <img className="rounded-lg w-56 h-64" src={photoURL} alt="" />
+            <img
+              className="rounded-lg md:w-56 md:h-64 w-36 h-56"
+              src={photoURL}
+              alt=""
+            />
           </div>
           <div>
             <div className="flex flex-col  ">
@@ -45,10 +66,22 @@ const ContactCard = ({ contacts }) => {
         </div>
         {/* <span className="font-extrabold text-7xl -skew-x-12 -skew-y-12 -mt-1 mb-5">70%</span> */}
 
-        <button className="absolute top-3 right-3 z-10 px-4 rounded-lg py-2 bg-sky-400 text-gray-50 hover:bg-sky-300">
-          Menu
-        </button>
-        {/* <p className="text-xs mb-1">*Variable prices</p> */}
+        <div className="absolute md:top-3 top-2 right-3 z-10  ">
+          <ul className="menu py-0 px-0  rounded-lg bg-sky-400 text-white text-base">
+            <li>
+              <details close>
+                <summary className="hover:bg-sky-600 rounded-lg">Menu</summary>
+
+                <li className="hover:bg-sky-600 rounded-lg ">
+                  <p onClick={handleModal}>Update</p>
+                </li>
+                <li className="hover:bg-sky-600 rounded-lg">
+                  <p onClick={() => handleDelete(_id)}>Delete</p>
+                </li>
+              </details>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );

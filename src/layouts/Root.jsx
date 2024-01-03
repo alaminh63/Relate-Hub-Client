@@ -5,8 +5,10 @@ import NavigationBar from "../Copmonents/Shared/NavigationBar/NavigationBar";
 const Root = () => {
   return (
     <div>
-      <NavigationBar/>
-      <Outlet />
+      <NavigationBar />
+      <div className="max-w-[1400px] mx-auto">
+        <Outlet />
+      </div>
     </div>
   );
 };
