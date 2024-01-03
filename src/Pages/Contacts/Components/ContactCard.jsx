@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Menu } from "@headlessui/react";
 const ContactCard = ({ contacts, handleModal }) => {
   const { name, email, photoURL, phone, address, _id } = contacts || {};
+
   const options = {
     method: "DELETE",
     headers: {
@@ -10,7 +11,6 @@ const ContactCard = ({ contacts, handleModal }) => {
     },
     body: "{}",
   };
-
   const handleDelete = (_id) => {
     fetch(`http://localhost:3000/deleteContact/${_id}`, options)
       .then((response) => response.json())
@@ -73,7 +73,7 @@ const ContactCard = ({ contacts, handleModal }) => {
                 <summary className="hover:bg-sky-600 rounded-lg">Menu</summary>
 
                 <li className="hover:bg-sky-600 rounded-lg ">
-                  <p onClick={handleModal}>Update</p>
+                  <p onClick={() => handleModal(contacts?._id)}>Update</p>
                 </li>
                 <li className="hover:bg-sky-600 rounded-lg">
                   <p onClick={() => handleDelete(_id)}>Delete</p>

@@ -1,34 +1,48 @@
-import React from "react";
-
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import ContactCard from "./Components/ContactCard";
 import ContactModal from "./Components/ContactModal";
+
 import "./Contacts.css";
+
 const Contacts = () => {
   const [contacts, setContacts] = useState([]);
-  const [contactId, setContactId] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
+  const [contactId, setContactId] = useState();
+
   useEffect(() => {
     fetch("http://localhost:3000/contacts")
-      .then((response) => response.json())
-      .then((response) => setContacts(response))
-      .catch((err) => console.error(err));
-  }, [contacts]);
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => setContacts(data))
+      .catch((error) => console.error("Error fetching contacts:", error));
+  }, []);
 
-  const { photoURL, name, email, address, phone } = contacts;
-  console.log(contacts);
-  const handleModal = (_id) => {
-    setContactId(_id);
+  const handleModal = (id) => {
+    setContactId(id);
     setIsOpen(!isOpen);
-    console.log(_id);
+    console.log(id);
   };
+
   return (
-    <div className="">
-      <ContactModal isOpen={isOpen} setIsOpen={setIsOpen} _id={contacts} />
-      <div className="grid md:grid-cols-3  gap-2 ">
-        {contacts.map((item, i) => (
-          <ContactCard key={i + 1} contacts={item} handleModal={handleModal}/>
+    <div className="contacts-container">
+      {" "}
+      {/* Added a more descriptive className */}
+      <ContactModal
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        contactId={contactId}
+      />
+      <div className="grid md:grid-cols-3 gap-2">
+        {contacts.map((contact) => (
+          <ContactCard
+            key={contact.id}
+            contacts={contact}
+            handleModal={handleModal}
+          />
         ))}
       </div>
     </div>
