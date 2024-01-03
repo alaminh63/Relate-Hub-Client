@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .active{
-    @apply rounded-lg bg-sky-600 px-3 py-3
+    @apply rounded-lg bg-sky-600 px-3 py-3 
 }

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import "./AddContact.css";
+import Swal from "sweetalert2";
 const AddContact = () => {
   const [value, setValue] = useState();
   const handleSubmit = (event) => {
@@ -24,9 +25,31 @@ const AddContact = () => {
 
     fetch("https://relate-hub-server.vercel.app/contacts", options)
       .then((response) => response.json())
-      .then((response) => console.log(response))
+      .then((response) => {
+        console.log(response);
+        if (response.insertedId) {
+          Swal.fire({
+            title: "Contact Added Successfully",
+            icon: "success",
+         
+
+            confirmButtonColor: "cool",
+            confirmButtonText: "OK",
+          });
+        } else {
+          Swal.fire({
+            title: "Already Added Bookmark",
+            icon: "error",
+           
+            confirmButtonColor: "cool",
+            confirmButtonText: "OK",
+          });
+        }
+      })
       .catch((err) => console.error(err));
   };
+
+  
   return (
     <div
       className="bg-[center_top_-1rem]   bg-cover bg-opacity-75 

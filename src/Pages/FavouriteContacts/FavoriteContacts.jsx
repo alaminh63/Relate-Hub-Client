@@ -14,7 +14,7 @@ const FavoriteContacts = () => {
 
   return (
     <div>
-      <h1 className="heading">Favorite Contacts</h1>
+      <h1 className="heading my-4">Favorite Contacts</h1>
      
       <ContactModal
         isOpen={isOpen}

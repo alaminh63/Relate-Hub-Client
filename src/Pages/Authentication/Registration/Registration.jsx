@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../../Context/AuthProvider";
 
 const Registration = () => {
@@ -21,7 +22,17 @@ const Registration = () => {
         console.log(loggedUser);
         setError("");
         setUser(null);
-        setSuccess("Acount Create Success");
+        setSuccess("Account Create Success");
+         Swal.fire({
+          title: "Account Create Successful",
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
+        });
+   
       })
       .catch((error) => {
         console.error(error);
@@ -51,8 +62,18 @@ const Registration = () => {
           });
         setError("");
         setUser(null);
-        setSuccess("Acount Create Success");
+        setSuccess("Account Create Success");
+        Swal.fire({
+          title: "Account Create Successful",
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
+        });
       })
+   
       .catch((error) => {
         console.error(error);
         setSuccess("");

@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../../Context/AuthProvider";
 
 import "./Login.css";
@@ -27,6 +28,15 @@ const Login = () => {
         setError("");
         setSuccess("Login Success Full");
         navigate(from, { replace: true });
+        Swal.fire({
+          title: "User Login Successful.",
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
+        });
       })
       .catch((error) => {
         console.error(error);
@@ -49,6 +59,15 @@ const Login = () => {
         setError("");
         setSuccess("Login Success Full");
         navigate(from, { replace: true });
+        Swal.fire({
+          title: "User Login Successful.",
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
+        });
       })
       .catch((error) => {
         console.error(error.message);

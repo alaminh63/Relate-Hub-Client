@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Menu } from "@headlessui/react";
 import { FaHeart } from "react-icons/fa";
 import "./contactCard.css";
+import Swal from "sweetalert2";
 
 const ContactCard = ({ contacts, handleModal }) => {
   const { name, email, photoURL, phone, address, _id } = contacts || {};
@@ -15,10 +16,32 @@ const ContactCard = ({ contacts, handleModal }) => {
     body: "{}",
   };
   const handleDelete = (_id) => {
-    fetch(`https://relate-hub-server.vercel.app/deleteContact/${_id}`, options)
-      .then((response) => response.json())
-      .then((response) => console.log(response))
-      .catch((err) => console.error(err));
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(
+          `https://relate-hub-server.vercel.app/deleteContact/${_id}`,
+          options
+        )
+          .then((response) => response.json())
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((err) => console.error(err));
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
+      }
+    });
   };
 
   const [isFavorite, setIsFavorite] = useState(false);
