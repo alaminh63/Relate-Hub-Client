@@ -19,7 +19,7 @@ const Contacts = () => {
       })
       .then((data) => setContacts(data))
       .catch((error) => console.error("Error fetching contacts:", error));
-  }, []);
+  }, [contacts]);
 
   const handleModal = (id) => {
     setContactId(id);
