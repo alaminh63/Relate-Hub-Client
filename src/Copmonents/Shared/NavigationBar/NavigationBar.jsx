@@ -11,7 +11,7 @@ const NavigationBar = () => {
         </Link>
         <div className="flex justify-center ">
           <NavLink
-            to="/"
+            to="/contacts"
             className={({ isActive }) =>
               isActive
                 ? "p-2 rounded bg-primary text-white cursor-pointer"

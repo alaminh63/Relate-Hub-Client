@@ -16,7 +16,7 @@ const Contacts = () => {
   console.log(contacts);
   return (
     <div className="">
-      <div className="grid grid-cols-3">
+      <div className="grid grid-cols-3 gap-4 ">
         {contacts.map((item, i) => (
           <ContactCard key={i + 1} contacts={item} />
         ))}
