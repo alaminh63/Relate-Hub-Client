@@ -29,7 +29,7 @@ const Contacts = () => {
 
   return (
     <div className="contacts-container my-12 max-w-[1450px] mx-auto">
-      <h1 className="heading mb-3">All Contacts Contacts</h1>
+      <h1 className="heading mb-3">All Contacts Contactsssss</h1>
       {/* Added a more descriptive className */}
       <ContactModal
         isOpen={isOpen}
