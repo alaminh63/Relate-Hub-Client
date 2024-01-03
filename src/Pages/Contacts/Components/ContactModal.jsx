@@ -24,7 +24,7 @@ const ContactModal = ({ isOpen, setIsOpen, contactId }) => {
       body: JSON.stringify(userInfo),
     };
 
-    fetch(`http://localhost:3000/contacts/${contactId}`, options)
+    fetch(`https://relate-hub-server.vercel.app/contacts/${contactId}`, options)
       .then((response) => response.json())
       .then((response) => console.log(response))
       .catch((err) => console.error(err));
@@ -34,7 +34,7 @@ const ContactModal = ({ isOpen, setIsOpen, contactId }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/contacts/${contactId}`
+          `https://relate-hub-server.vercel.app/contacts/${contactId}`
         );
         setSingleContact(response.data);
       } catch (error) {
@@ -46,8 +46,6 @@ const ContactModal = ({ isOpen, setIsOpen, contactId }) => {
     }
   }, [contactId]);
 
-
-  
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
       <div
@@ -84,7 +82,7 @@ const ContactModal = ({ isOpen, setIsOpen, contactId }) => {
                 id="email"
                 international
                 defaultCountry="BD"
-             defaultValue={value}
+                defaultValue={value}
                 onChange={setValue}
               />
 

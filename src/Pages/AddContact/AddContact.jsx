@@ -22,7 +22,7 @@ const AddContact = () => {
       body: JSON.stringify(userInfo),
     };
 
-    fetch("http://localhost:3000/contacts", options)
+    fetch("https://relate-hub-server.vercel.app/contacts", options)
       .then((response) => response.json())
       .then((response) => console.log(response))
       .catch((err) => console.error(err));

@@ -91,7 +91,7 @@ const NavigationBar = () => {
       </div>
 
       <motion.ul
-        className={`font-semibold flex items-center duration-300 flex-col py-5 px-5 md:p-0 text-white bg-opacity-90 top-[13%] bg-sky-500 md:bg-transparent w-36 md:w-auto md:flex-row rounded-md   gap-6 absolute md:static z-50 ${
+        className={` flex font-bold items-center duration-300 flex-col py-5 px-5 md:p-0 text-white bg-opacity-90 top-[13%] bg-sky-500 md:bg-transparent w-36 md:w-auto md:flex-row rounded-md   gap-6 absolute md:static z-50 ${
           toggle ? "top-0 left-0" : "-left-full duration-300"
         }`}
         initial={{ opacity: 0.5 }}
@@ -128,7 +128,7 @@ const NavigationBar = () => {
         to="/login"
         className="p-2 rounded group  cursor-pointer transition-all  mt-auto"
       >
-        <div className="">
+        <div className="font-bold text-base">
           {user ? (
             <>
               <div className="flex gap-4 ">

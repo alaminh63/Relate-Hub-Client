@@ -10,7 +10,7 @@ const Contacts = () => {
   const [contactId, setContactId] = useState();
 
   useEffect(() => {
-    fetch("http://localhost:3000/contacts")
+    fetch("https://relate-hub-server.vercel.app/contacts")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -29,7 +29,7 @@ const Contacts = () => {
 
   return (
     <div className="contacts-container my-12 max-w-[1450px] mx-auto">
-      {" "}
+      <h1 className="heading mb-3">All Contacts Contacts</h1>
       {/* Added a more descriptive className */}
       <ContactModal
         isOpen={isOpen}

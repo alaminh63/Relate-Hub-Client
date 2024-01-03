@@ -15,7 +15,7 @@ const ContactCard = ({ contacts, handleModal }) => {
     body: "{}",
   };
   const handleDelete = (_id) => {
-    fetch(`http://localhost:3000/deleteContact/${_id}`, options)
+    fetch(`https://relate-hub-server.vercel.app/deleteContact/${_id}`, options)
       .then((response) => response.json())
       .then((response) => console.log(response))
       .catch((err) => console.error(err));
@@ -71,23 +71,20 @@ const ContactCard = ({ contacts, handleModal }) => {
           <div>
             <div className="flex flex-col  ">
               <p className="text-2xl font-semibold">{name}</p>
-              <p className="inline-block my-1 relative w-full h-0.5 rounded-3xl bg-sky-400"></p>
+              <p className="inline-block my-1 relative w-full h-0.5 rounded-3xl bg-sky-500"></p>
               <p>{email}</p>
-              <p className="inline-block my-1 relative w-full h-0.5 rounded-3xl bg-sky-400"></p>
+              <p className="inline-block my-1 relative w-full h-0.5 rounded-3xl bg-sky-500"></p>
               <p>{phone}</p>
-              <p className="inline-block my-1 relative w-full h-0.5 rounded-3xl bg-sky-400"></p>
+              <p className="inline-block my-1 relative w-full h-0.5 rounded-3xl bg-sky-500"></p>
               <p>{address}</p>
-              <p className="inline-block my-1 relative w-full h-0.5 rounded-3xl bg-sky-400"></p>
-              {/* <p className="relative text-xs inline-block after:absolute after:content-[''] after:ml-2 after:top-1/2 after:bg-sky-200 after:w-12 after:h-0.5   before:absolute before:content-[''] before:-ml-14 before:top-1/2 before:bg-sky-200 before:w-12 before:h-0.5">
-                Up to
-            </p> */}
+              <p className="inline-block my-1 relative w-full h-0.5 rounded-3xl bg-sky-500"></p>
             </div>
           </div>
         </div>
         {/* <span className="font-extrabold text-7xl -skew-x-12 -skew-y-12 -mt-1 mb-5">70%</span> */}
 
         <div className="absolute md:top-3 top-2 right-3 z-10  ">
-          <ul className="menu py-0 px-0  rounded-lg bg-sky-400 text-white text-base">
+          <ul className="menu py-0 px-0  rounded-lg bg-sky-500 text-white text-base">
             <li>
               <details close>
                 <summary className="hover:bg-sky-600 rounded-lg">Menu</summary>
@@ -102,33 +99,25 @@ const ContactCard = ({ contacts, handleModal }) => {
             </li>
           </ul>
         </div>
-        {/* <button
-          onClick={toggleFavorite}
-          className={`${
-            isFavorite ? "bg-yellow-400" : "bg-gray-300"
-          } rounded-full p-2`}
-        >
-          <div className="flex items-center gap-2">
-            <FaHeart className="text-black h-5 w-5 " />
-            {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
-          </div>
-        </button> */}
+
         <button onClick={toggleFavorite} className="">
           <div className="tooltip-container">
             <span
               //       className={`  isFavorite ? "bg-yellow-400" : "bg-sky-500"
               //    tooltip w-48 py-3 md:py-3 ml-2   text-xl border-2 border-white bg-sky-500`}
               className={`${
-                isFavorite ? "bg-black" : "bg-sky-600"
+                isFavorite ? "bg-red-600" : "bg-sky-600"
               }  tooltip w-48 py-3 md:py-3 ml-2   text-xl border-2 border-white rounded-full p-2`}
             >
-              <p className="text-base">{isFavorite ? "Remove " : "Add to Favorites"}</p>
+              <p className="text-base">
+                {isFavorite ? "Remove " : "Add to Favorites"}
+              </p>
             </span>
             <span className="text">
               <div className="">
                 <div
                   className={`${
-                    isFavorite ? "bg-black" : "bg-sky-600"
+                    isFavorite ? "bg-red-600" : "bg-sky-600"
                   } icon border-2 border-white bg-sky-500`}
                 >
                   <FaHeart className="  text-white text-xl" />

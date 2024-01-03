@@ -9,7 +9,7 @@ const FavoriteCards = ({ item }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/contacts/${item}`
+          `https://relate-hub-server.vercel.app/contacts/${item}`
         );
         setContacts(response.data);
       } catch (error) {
