@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { Menu } from "@headlessui/react";
+import { FaHeart } from "react-icons/fa";
+import "./contactCard.css";
+
 const ContactCard = ({ contacts, handleModal }) => {
   const { name, email, photoURL, phone, address, _id } = contacts || {};
 
@@ -60,7 +63,7 @@ const ContactCard = ({ contacts, handleModal }) => {
         <div className="flex gap-1 items-center border-2 w-full justify-evenly ">
           <div>
             <img
-              className="rounded-lg md:w-56 md:h-64 w-36 h-56"
+              className="rounded-lg md:w-56 md:h-64 w-48 h-56"
               src={photoURL}
               alt=""
             />
@@ -99,14 +102,41 @@ const ContactCard = ({ contacts, handleModal }) => {
             </li>
           </ul>
         </div>
-        <button
-            onClick={toggleFavorite}
-            className={`${
-              isFavorite ? "bg-yellow-400" : "bg-gray-300"
-            } rounded-full p-2`}
-          >
+        {/* <button
+          onClick={toggleFavorite}
+          className={`${
+            isFavorite ? "bg-yellow-400" : "bg-gray-300"
+          } rounded-full p-2`}
+        >
+          <div className="flex items-center gap-2">
+            <FaHeart className="text-black h-5 w-5 " />
             {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
-          </button>
+          </div>
+        </button> */}
+        <button onClick={toggleFavorite} className="">
+          <div className="tooltip-container">
+            <span
+              //       className={`  isFavorite ? "bg-yellow-400" : "bg-sky-500"
+              //    tooltip w-48 py-3 md:py-3 ml-2   text-xl border-2 border-white bg-sky-500`}
+              className={`${
+                isFavorite ? "bg-black" : "bg-sky-600"
+              }  tooltip w-48 py-3 md:py-3 ml-2   text-xl border-2 border-white rounded-full p-2`}
+            >
+              <p className="text-base">{isFavorite ? "Remove " : "Add to Favorites"}</p>
+            </span>
+            <span className="text">
+              <div className="">
+                <div
+                  className={`${
+                    isFavorite ? "bg-black" : "bg-sky-600"
+                  } icon border-2 border-white bg-sky-500`}
+                >
+                  <FaHeart className="  text-white text-xl" />
+                </div>
+              </div>
+            </span>
+          </div>
+        </button>
       </div>
     </div>
   );

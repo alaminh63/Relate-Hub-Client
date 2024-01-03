@@ -28,7 +28,7 @@ const Contacts = () => {
   };
 
   return (
-    <div className="contacts-container">
+    <div className="contacts-container my-12 max-w-[1450px] mx-auto">
       {" "}
       {/* Added a more descriptive className */}
       <ContactModal

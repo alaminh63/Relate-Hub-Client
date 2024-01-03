@@ -22,7 +22,23 @@ const FavoriteCards = ({ item }) => {
   }, [item]);
 
   const { name, email, photoURL, phone, address, _id } = contacts || {};
+  const [isFavorite, setIsFavorite] = useState(false);
+  useEffect(() => {
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    setIsFavorite(favorites.includes(_id));
+  }, [_id]);
+  const toggleFavorite = () => {
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
+    if (isFavorite) {
+      favorites = favorites.filter((favId) => favId !== _id);
+    } else {
+      favorites.push(_id);
+    }
+
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    setIsFavorite(!isFavorite);
+  };
   return (
     <div className="border  p-2 rounded-xl shadow-lg  ">
       <div className="overflow-hidden relative  bg-gray-50 rounded-2xl text-sky-600 flex flex-col justify-end items-center gap-2">
@@ -71,22 +87,14 @@ const FavoriteCards = ({ item }) => {
         </div>
         {/* <span className="font-extrabold text-7xl -skew-x-12 -skew-y-12 -mt-1 mb-5">70%</span> */}
 
-        {/* <div className="absolute md:top-3 top-2 right-3 z-10  ">
-          <ul className="menu py-0 px-0  rounded-lg bg-sky-400 text-white text-base">
-            <li>
-              <details close>
-                <summary className="hover:bg-sky-600 rounded-lg">Menu</summary>
-
-                <li className="hover:bg-sky-600 rounded-lg ">
-                  <p onClick={() => handleModal(contacts?._id)}>Update</p>
-                </li>
-                <li className="hover:bg-sky-600 rounded-lg">
-                  <p onClick={() => handleDelete(_id)}>Delete</p>
-                </li>
-              </details>
-            </li>
-          </ul>
-        </div> */}
+        <button
+          onClick={toggleFavorite}
+          className={`${
+            isFavorite ? "bg-yellow-400" : "bg-gray-300"
+          } rounded-full p-2`}
+        >
+          {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+        </button>
       </div>
     </div>
   );

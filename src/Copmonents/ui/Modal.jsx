@@ -38,7 +38,7 @@ export default function Modal({ isOpen, setIsOpen, children }) {
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                Information
+             
                   </Dialog.Title>
                   {children}
                 </Dialog.Panel>
